@@ -1,0 +1,70 @@
+Option Explicit
+ 
+Sub AutoFitAll()
+     
+    Application.ScreenUpdating = False
+    Dim wkSt As String
+    Dim wkBk As Worksheet
+    wkSt = ActiveSheet.Name
+    For Each wkBk In ActiveWorkbook.Worksheets
+        On Error Resume Next
+        wkBk.Activate
+        Cells.EntireColumn.AutoFit
+        Range("A" & 1, "F" & 1).Interior.ColorIndex = 41
+        Range("A" & 1, "F" & 1).Font.Color = vbWhite
+        
+        Dim lRow As Integer
+        Dim lCol As Integer
+        lRow = ActiveSheet.Cells(Rows.Count, "A").End(xlUp).Row
+        lCol = ActiveSheet.Cells(1, Columns.Count).End(xlToLeft).Column
+        ActiveSheet.ListObjects.Add(xlSrcRange, Range(Cells(1, 1), Cells(lRow, lCol)), , xlYes).Name = "Tickets"
+
+        Range("A2").CurrentRegion.Select
+        Selection.Sort Key1:=Range("A2"), Order1:=xlAscending, Header:=xlGuess, _
+        OrderCustom:=1, MatchCase:=False, Orientation:=xlTopToBottom, _
+        DataOption1:=xlSortNormal
+        
+        Rows(1).Insert shift:=xlShiftDown
+        Range("A1:F1").Merge
+        Range("A1").HorizontalAlignment = xlCenter
+        Range("A1").Font.Size = 24
+        If ActiveSheet.Name = "SM Long Format" Then
+           [A1].Value = "Sales and Marketing"
+            
+        ElseIf ActiveSheet.Name = "LG Long Format" Then
+           [A1].Value = "Legal"
+           
+        ElseIf ActiveSheet.Name = "RT Long Format" Then
+           [A1].Value = "Technologies"
+            
+        ElseIf ActiveSheet.Name = "RE Long Format" Then
+           [A1].Value = "Engineering"
+            
+        ElseIf ActiveSheet.Name = "RLS Long Format" Then
+           [A1].Value = "Life Sciences"
+            
+        ElseIf ActiveSheet.Name = "OA Long Format" Then
+           [A1].Value = "Office and Administration"
+            
+        ElseIf ActiveSheet.Name = "ML Long Format" Then
+           [A1].Value = "Manufacturing and Logistics"
+            
+        ElseIf ActiveSheet.Name = "AF Long Format" Then
+           [A1].Value = "Accounting and Finance"
+           
+        ElseIf ActiveSheet.Name = "HR Long Format" Then
+           [A1].Value = "Human Resources"
+            
+        ElseIf ActiveSheet.Name = "Healthcare Long Format" Then
+           [A1].Value = "Healthcare"
+            
+        End If
+            
+            
+    Next wkBk
+    Sheets(wkSt).Select
+    Application.ScreenUpdating = True
+     
+
+End Sub
+
