@@ -1,0 +1,82 @@
+Sub find_last_plus_10()
+Application.ScreenUpdating = False
+    Dim wkSt As String
+    Dim wkBk As Worksheet
+    Dim N As Long, i As Long, j As Long
+    Dim rng As Range
+    Dim LastRowIndex As Integer
+    Dim RowIndex As Integer
+    Dim UsedRng As Range
+ 
+    
+Dim rngFound As Range
+'       sort worksheets
+     If Worksheets("RE Long Format").Cells(3, 3).Value = "engineering" Then
+     Worksheets("RE Long Format").Move After:=Worksheets("AF Long Format")
+     End If
+     If Worksheets("Healthcare Long Format").Cells(3, 3).Value = "healthcare" Then
+     Worksheets("Healthcare Long Format").Move After:=Worksheets("RE Long Format")
+     End If
+     If Worksheets("HR Long Format").Cells(3, 3).Value = "human resources" Then
+     Worksheets("HR Long Format").Move After:=Worksheets("Healthcare Long Format")
+     End If
+     If Worksheets("LG Long Format").Cells(3, 3).Value = "legal" Then
+     Worksheets("LG Long Format").Move After:=Worksheets("HR Long Format")
+     End If
+     If Worksheets("RLS Long Format").Cells(3, 3).Value = "life sciences" Then
+     Worksheets("RLS Long Format").Move After:=Worksheets("LG Long Format")
+     End If
+     If Worksheets("ML Long Format").Cells(3, 3).Value = "manufacturing and logistics" Then
+     Worksheets("ML Long Format").Move After:=Worksheets("RLS Long Format")
+     End If
+     If Worksheets("OA Long Format").Cells(3, 3).Value = "office and administration" Then
+     Worksheets("OA Long Format").Move After:=Worksheets("ML Long Format")
+     End If
+     If Worksheets("SM Long Format").Cells(3, 3).Value = "sales and marketing" Then
+     Worksheets("SM Long Format").Move After:=Worksheets("OA Long Format")
+     End If
+     If Worksheets("RT Long Format").Cells(3, 3).Value = "technologies" Then
+     Worksheets("RT Long Format").Move After:=Worksheets("SM Long Format")
+     End If
+     
+    
+    wkSt = ActiveSheet.Name
+For Each wkBk In ActiveWorkbook.Worksheets
+    wkBk.Activate
+    
+    
+    Set UsedRng = ActiveSheet.UsedRange
+    LastRowIndex = UsedRng.Row - 1 + UsedRng.Rows.Count
+    Application.ScreenUpdating = False
+     
+   
+    Range("I:I,J:J,K:K").Value = ""
+    
+
+    
+    Lastrow = ActiveSheet.Cells(Rows.Count, "A").End(xlUp).Row
+    Rows(Lastrow + 1).Insert Shift:=xlUp
+    Rows(Lastrow + 2).Insert Shift:=xlUp
+    'Range(EntireRow & Lastrow + 10).Value = " "
+   
+    
+    For i = 1 To Lastrow
+    'write to adjacent cell
+    If Cells(i, "A").Value = "washington, d.c." Then
+            Cells(i, "A").Value = "washington"
+            Cells(i, "B").Value = "d.c."
+    End If
+    Next i
+    
+     
+        Range("B3").CurrentRegion.Select
+        Selection.Sort Key1:=Range("B2"), Order1:=xlAscending, Header:=xlGuess, _
+        OrderCustom:=1, MatchCase:=False, Orientation:=xlTopToBottom, _
+        DataOption1:=xlSortNormal
+        
+   
+        
+    Next wkBk
+    Sheets(wkSt).Select
+    Application.ScreenUpdating = True
+End Sub
