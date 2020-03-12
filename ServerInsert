@@ -1,0 +1,76 @@
+Selection.Insert Shift:=xlToRight
+
+Columns("C:C").Select
+Selection.Insert Shift:=xlToRight
+
+
+
+
+'inserts title values
+Range("C1").Value = "CCORP Server Lookup"
+Range("D1").Value = "CCORP Server"
+
+
+
+'put values into column c
+Range("C2") = "=INDEX(ServerLookup20190123!C:C,MATCH(B2,ServerLookup20190123!A:A,0))": Range(Range("C2"), Range("C2").End(xlDown)).FillDown
+
+'calculate values
+Range(Range("C2"), Range("C2").End(xlDown)).Calculate
+
+'copy and paste those values into column d
+Range(Range("D2"), Range("D2").End(xlDown)).Value = Range(Range("C2"), Range("C2").End(xlDown)).Value
+
+Columns("H:H").Select
+Selection.Insert Shift:=xlToRight
+Range("H1").Value = "Vulnerability Summary"
+
+Dim i As Long
+
+For i = 2 To Cells(Rows.Count, 9).End(xlUp).Row
+
+
+If Cells(i, 9).Value = "TLS Server Supports TLS version 1.0" Then
+Cells(i, 8).Value = "TLS Server"
+End If
+
+If Cells(i, 9).Value = "TLS Server Supports TLS version 1.1" Then
+Cells(i, 8).Value = "TLS"
+End If
+
+If Cells(i, 9).Value = "Obsolete Version of Microsoft Windows Server 2003" Then
+Cells(i, 8).Value = "Obsolete Server/OS"
+End If
+
+If Cells(i, 9).Value = "HTTP OPTIONS Method Enabled" Then
+Cells(i, 8).Value = "HTTP"
+End If
+
+If Cells(i, 9).Value = "Microsoft IIS default installation/welcome page installed" Then
+Cells(i, 8).Value = "IIS"
+End If
+
+If Cells(i, 9).Value = "TLS/SSL Birthday attacks on 64-bit block ciphers (SWEET32)" Then
+Cells(i, 8).Value = "TLS"
+End If
+
+If Cells(i, 9).Value = "TLS/SSL Server is enabling the BEAST attack" Then
+Cells(i, 8).Value = "TLS"
+End If
+
+If Cells(i, 9).Value = "TLS/SSL Server Supports 3DES Cipher Suite" Then
+Cells(i, 8).Value = "TLS"
+End If
+
+If Cells(i, 9).Value = "TLS/SSL Server Supports The Use of Static Key Ciphers" Then
+Cells(i, 8).Value = "TLS"
+End If
+
+If Cells(i, 9).Value = "X.509 Server Certificate Will Expire Within 30 Days" Then
+Cells(i, 8).Value = "X509"
+End If
+
+Next i
+
+Application.ScreenUpdating = True
+End Sub

@@ -1,0 +1,20 @@
+Sub TREG()
+Application.ScreenUpdating = False
+
+Dim lnRow As Long, lnCol As Long
+Dim colNum
+
+
+
+
+colNum = WorksheetFunction.Match("Findings Variance (4/15 vs Current)", ActiveSheet.Range("1:1"), 0)
+
+
+
+Columns(colNum).EntireColumn.Insert
+Cells(1, colNum).Value = Date & " AVG Vuln SevScore"
+Columns(colNum).EntireColumn.Insert
+Cells(1, colNum).Value = Date & " Findings Total"
+
+Application.ScreenUpdating = True
+End Sub
