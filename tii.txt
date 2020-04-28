@@ -1,0 +1,44 @@
+Sub dailystats_TII()
+
+
+Dim bottomRow As Integer
+Dim dataRow As Integer
+Dim description As String
+Dim workaround As String
+Dim impactStart As String
+Dim impactDuration As String
+Dim impactBusiness As String
+
+bottomRow = Workbooks("dailystats_TII.csv").Worksheets("dailystats_TII").Cells(Rows.Count, 1).End(xlUp).Row
+
+dataRow = Cells.Find(What:="Internet Traffic (for today)", After:=ActiveCell, LookIn _
+        :=xlFormulas, LookAt:=xlPart, SearchOrder:=xlByRows, SearchDirection:= _
+        xlNext, MatchCase:=False, SearchFormat:=False).Row
+
+Application.ScreenUpdating = False
+''''''''
+
+dataRow = dataRow - 2
+''''''''
+For i = 18 To dataRow
+
+description = Cells(i, 1).Value
+workaround = Cells(i, 2).Value
+impactStart = Cells(i, 6).Value
+impactDuration = Cells(i, 7).Text
+impactBusiness = Cells(i, 8).Text
+''''''''''''''''''''
+Workbooks("dailystats_TII.csv").Worksheets("dailystats_TII").Cells(bottomRow + 1, 1).Value = Date
+Workbooks("dailystats_TII.csv").Worksheets("dailystats_TII").Cells(bottomRow + 1, 2).Value = description
+Workbooks("dailystats_TII.csv").Worksheets("dailystats_TII").Cells(bottomRow + 1, 3).Value = workaround
+Workbooks("dailystats_TII.csv").Worksheets("dailystats_TII").Cells(bottomRow + 1, 4).Value = impactStart
+Workbooks("dailystats_TII.csv").Worksheets("dailystats_TII").Cells(bottomRow + 1, 5).Value = impactDuration
+Workbooks("dailystats_TII.csv").Worksheets("dailystats_TII").Cells(bottomRow + 1, 6).Value = impactBusiness
+bottomRow = bottomRow + 1
+Next i
+''''''''
+Application.ScreenUpdating = True
+
+
+End Sub
+

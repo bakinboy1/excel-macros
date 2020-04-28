@@ -1,0 +1,47 @@
+
+Sub dailystats_IT()
+
+
+Dim bottomRow As Integer
+Dim description As String
+Dim workaround As String
+Dim impact As String
+Dim vpnPhoneConfig As String
+Dim vpnPhoneDelay As String
+Dim confCalls As String
+Dim confCallMin As String
+Dim dataRow As Integer
+
+dataRow = Cells.Find(What:="Internet Traffic (for today)", After:=ActiveCell, LookIn _
+        :=xlFormulas, LookAt:=xlPart, SearchOrder:=xlByRows, SearchDirection:= _
+        xlNext, MatchCase:=False, SearchFormat:=False).Row
+dataRow = dataRow + 4
+        ''''
+        
+bottomRow = Workbooks("DailyStats_IT.csv").Worksheets("DailyStats_IT").Cells(Rows.Count, 1).End(xlUp).Row
+Application.ScreenUpdating = False
+''''''''
+fwVPN = Cells(dataRow, 2).Value
+ec500 = Cells(dataRow + 1, 2).Value
+webexAccounts = Cells(dataRow + 2, 2).Value
+vpnPhoneConfig = Cells(dataRow + 3, 2).Value
+vpnPhoneDelay = Cells(dataRow + 4, 2).Value
+confCalls = Cells(dataRow + 5, 2).Value
+confCallMin = Cells(dataRow + 6, 2).Value
+''''''''
+
+
+Workbooks("DailyStats_IT.csv").Worksheets("DailyStats_IT").Cells(bottomRow + 1, 1).Value = Date
+Workbooks("DailyStats_IT.csv").Worksheets("DailyStats_IT").Cells(bottomRow + 1, 2).Value = fwVPN
+Workbooks("DailyStats_IT.csv").Worksheets("DailyStats_IT").Cells(bottomRow + 1, 3).Value = ec500
+Workbooks("DailyStats_IT.csv").Worksheets("DailyStats_IT").Cells(bottomRow + 1, 4).Value = webexAccounts
+Workbooks("DailyStats_IT.csv").Worksheets("DailyStats_IT").Cells(bottomRow + 1, 5).Value = vpnPhoneConfig
+Workbooks("DailyStats_IT.csv").Worksheets("DailyStats_IT").Cells(bottomRow + 1, 6).Value = vpnPhoneDelay
+Workbooks("DailyStats_IT.csv").Worksheets("DailyStats_IT").Cells(bottomRow + 1, 7).Value = confCalls
+Workbooks("DailyStats_IT.csv").Worksheets("DailyStats_IT").Cells(bottomRow + 1, 8).Value = confCallMin
+''''''''
+Application.ScreenUpdating = True
+
+
+End Sub
+

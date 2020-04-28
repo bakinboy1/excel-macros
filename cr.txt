@@ -1,0 +1,42 @@
+
+Sub dailystats_CR()
+
+
+Dim bottomRow As Integer
+Dim BackOrder As Integer
+Dim NewRequests As Integer
+Dim Closed As Integer
+Dim Upgrades As Integer
+Dim DataUsage As String
+Dim dataRow As Integer
+
+dataRow = Cells.Find(What:="Cellular Requests", After:=ActiveCell, LookIn _
+        :=xlFormulas, LookAt:=xlPart, SearchOrder:=xlByRows, SearchDirection:= _
+        xlNext, MatchCase:=False, SearchFormat:=False).Row
+        
+dataRow = dataRow + 1
+
+bottomRow = Workbooks("DailyStats_CR.csv").Worksheets("DailyStats_CR").Cells(Rows.Count, 1).End(xlUp).Row
+Application.ScreenUpdating = False
+''''''''
+BackOrder = Cells(dataRow, 2).Value
+NewRequests = Cells(dataRow + 1, 2).Value
+Closed = Cells(dataRow + 2, 2).Value
+Upgrades = Cells(dataRow + 3, 2).Value
+DataUsage = Right(Cells(dataRow + 6, 1).Value, Len(Cells(dataRow + 6, 1).Value) - (InStrRev(Cells(dataRow + 6, 1).Value, " ")))
+
+''''''''
+
+
+Workbooks("DailyStats_CR.csv").Worksheets("DailyStats_CR").Cells(bottomRow + 1, 1).Value = Date
+Workbooks("DailyStats_CR.csv").Worksheets("DailyStats_CR").Cells(bottomRow + 1, 2).Value = BackOrder
+Workbooks("DailyStats_CR.csv").Worksheets("DailyStats_CR").Cells(bottomRow + 1, 3).Value = NewRequests
+Workbooks("DailyStats_CR.csv").Worksheets("DailyStats_CR").Cells(bottomRow + 1, 4).Value = Closed
+Workbooks("DailyStats_CR.csv").Worksheets("DailyStats_CR").Cells(bottomRow + 1, 5).Value = Upgrades
+Workbooks("DailyStats_CR.csv").Worksheets("DailyStats_CR").Cells(bottomRow + 1, 6).Value = DataUsage
+''''''''
+Application.ScreenUpdating = True
+
+
+End Sub
+

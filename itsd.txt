@@ -1,0 +1,89 @@
+Sub DailyStats_ITSD()
+
+Dim avgTalkTime As Variant
+Dim avgWaitTime As Variant
+Dim totalNumCalls As String
+Dim abandons As String
+Dim internalCalls As String
+Dim typicalTalkTime As Variant
+Dim typicalWaitTime As Variant
+Dim typicalCallVolume As String
+Dim typicalAbandons As String
+Dim typicalIntVolume As String
+Dim mfwa As String
+Dim sng As String
+Dim ffWeb As String
+Dim ffSpanish As String
+Dim staffWorkRem As String
+Dim email As String
+Dim sr As String
+Dim safe As String
+Dim ssPortal As String
+Dim resolved As String
+
+bottomRow = Workbooks("dailystats_ITSD.csv").Worksheets("dailystats_ITSD").Cells(Rows.Count, 1).End(xlUp).Row
+
+Application.ScreenUpdating = False
+avgTalkTime = Cells(5, 2).Text
+avgWaitTime = Cells(6, 2).Text
+totalNumCalls = Cells(7, 2).Value
+abandons = Cells(8, 2).Value
+internalCalls = Cells(9, 2).Value
+typicalTalkTime = Cells(5, 7).Text
+typicalWaitTime = Cells(6, 7).Text
+typicalCallVolume = Cells(7, 7).Value
+typicalAbandons = Cells(8, 7).Value
+typicalIntVolume = Cells(9, 7).Value
+mfwa = Cells(10, 2).Value
+sng = Cells(11, 2).Value
+ffWeb = Cells(12, 2).Value
+ffSpanish = Cells(13, 2).Value
+''
+staffWorkRem = Cells(14, 2).Value
+   i = ""
+   For x = 1 To Len(staffWorkRem)
+     myChar = Mid(staffWorkRem, x, 1)
+         If Asc(myChar) >= 48 And _
+            Asc(myChar) <= 57 Then
+            i = i & myChar
+         End If
+   Next
+   RemoveAllNonNums = Val(i)
+''
+email = Cells(10, 6).Value
+sr = Cells(11, 6).Value
+safe = Cells(12, 6).Value
+ssPortal = Cells(13, 6).Value
+resolved = Cells(14, 6).Value
+
+
+''''''''
+Workbooks("DailyStats_ITSD.csv").Worksheets("DailyStats_ITSD").Cells(bottomRow + 1, 1).Value = Date
+Workbooks("DailyStats_ITSD.csv").Worksheets("DailyStats_ITSD").Cells(bottomRow + 1, 2).Value = avgTalkTime
+Workbooks("DailyStats_ITSD.csv").Worksheets("DailyStats_ITSD").Cells(bottomRow + 1, 3).Value = avgWaitTime
+Workbooks("DailyStats_ITSD.csv").Worksheets("DailyStats_ITSD").Cells(bottomRow + 1, 4).Value = totalNumCalls
+Workbooks("DailyStats_ITSD.csv").Worksheets("DailyStats_ITSD").Cells(bottomRow + 1, 5).Value = abandons
+Workbooks("DailyStats_ITSD.csv").Worksheets("DailyStats_ITSD").Cells(bottomRow + 1, 6).Value = internalCalls
+Workbooks("DailyStats_ITSD.csv").Worksheets("DailyStats_ITSD").Cells(bottomRow + 1, 7).Value = typicalTalkTime
+Workbooks("DailyStats_ITSD.csv").Worksheets("DailyStats_ITSD").Cells(bottomRow + 1, 8).Value = typicalWaitTime
+Workbooks("DailyStats_ITSD.csv").Worksheets("DailyStats_ITSD").Cells(bottomRow + 1, 9).Value = typicalCallVolume
+Workbooks("DailyStats_ITSD.csv").Worksheets("DailyStats_ITSD").Cells(bottomRow + 1, 10).Value = typicalAbandons
+Workbooks("DailyStats_ITSD.csv").Worksheets("DailyStats_ITSD").Cells(bottomRow + 1, 11).Value = typicalIntVolume
+Workbooks("DailyStats_ITSD.csv").Worksheets("DailyStats_ITSD").Cells(bottomRow + 1, 12).Value = mfwa
+Workbooks("DailyStats_ITSD.csv").Worksheets("DailyStats_ITSD").Cells(bottomRow + 1, 13).Value = sng
+Workbooks("DailyStats_ITSD.csv").Worksheets("DailyStats_ITSD").Cells(bottomRow + 1, 14).Value = ffWeb
+Workbooks("DailyStats_ITSD.csv").Worksheets("DailyStats_ITSD").Cells(bottomRow + 1, 15).Value = ffSpanish
+Workbooks("DailyStats_ITSD.csv").Worksheets("DailyStats_ITSD").Cells(bottomRow + 1, 16).Value = staffWorkRem
+Workbooks("DailyStats_ITSD.csv").Worksheets("DailyStats_ITSD").Cells(bottomRow + 1, 17).Value = email
+Workbooks("DailyStats_ITSD.csv").Worksheets("DailyStats_ITSD").Cells(bottomRow + 1, 18).Value = sr
+Workbooks("DailyStats_ITSD.csv").Worksheets("DailyStats_ITSD").Cells(bottomRow + 1, 19).Value = safe
+Workbooks("DailyStats_ITSD.csv").Worksheets("DailyStats_ITSD").Cells(bottomRow + 1, 20).Value = ssPortal
+Workbooks("DailyStats_ITSD.csv").Worksheets("DailyStats_ITSD").Cells(bottomRow + 1, 21).Value = resolved
+
+''''''''
+Application.ScreenUpdating = True
+End Sub
+
+
+
+

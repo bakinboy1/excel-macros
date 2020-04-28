@@ -1,0 +1,68 @@
+Sub dailystats_AC()
+
+Dim UIDevices As Integer
+Dim Monitors As Integer
+Dim Phones As Integer
+Dim telebundle As Integer
+Dim DualMonitors As Integer
+Dim MonKeyboardMouse As Integer
+Dim MonDocks As Integer
+Dim Docks As Integer
+Dim DockKeyMouse As Integer
+Dim chair As Integer
+Dim KeyMouse As Integer
+Dim other As Integer
+Dim totalAssets As Integer
+Dim dataRow As Integer
+
+dataRow = Cells.Find(What:="Asset Checkout (Employees)", After:=ActiveCell, LookIn _
+        :=xlFormulas, LookAt:=xlPart, SearchOrder:=xlByRows, SearchDirection:= _
+        xlNext, MatchCase:=False, SearchFormat:=False).Row
+dataRow = dataRow + 2
+
+bottomRow = Workbooks("DailyStats_AC.csv").Worksheets("DailyStats_AC").Cells(Rows.Count, 1).End(xlUp).Row
+Application.ScreenUpdating = False
+''''''''
+UIDevices = Cells(dataRow, 2).Value
+Monitors = Cells(dataRow + 1, 2).Value
+Phones = Cells(dataRow + 2, 2).Value
+telebundle = Cells(dataRow + 3, 2).Value
+DualMonitors = Cells(dataRow + 4, 2).Value
+MonKeyboardMouse = Cells(dataRow + 5, 2).Value
+MonDocks = Cells(dataRow + 6, 2).Value
+Docks = Cells(dataRow + 7, 2).Value
+DockKeyMouse = Cells(dataRow + 8, 2).Value
+chair = Cells(dataRow + 9, 2).Value
+KeyMouse = Cells(dataRow + 10, 2).Value
+other = Cells(dataRow + 11, 2).Value
+''
+totalAssets = Cells(dataRow + 12, 2).Value
+   i = ""
+   For x = 1 To Len(totalAssets)
+     myChar = Mid(totalAssets, x, 1)
+         If Asc(myChar) >= 48 And _
+            Asc(myChar) <= 57 Then
+            i = i & myChar
+         End If
+   Next
+   RemoveAllNonNums = Val(i)
+   totalAssets = RemoveAllNonNums
+   ''
+''''''''
+Workbooks("DailyStats_AC.csv").Worksheets("DailyStats_AC").Cells(bottomRow + 1, 1).Value = Date
+Workbooks("DailyStats_AC.csv").Worksheets("DailyStats_AC").Cells(bottomRow + 1, 2).Value = UIDevices
+Workbooks("DailyStats_AC.csv").Worksheets("DailyStats_AC").Cells(bottomRow + 1, 3).Value = Monitors
+Workbooks("DailyStats_AC.csv").Worksheets("DailyStats_AC").Cells(bottomRow + 1, 4).Value = Phones
+Workbooks("DailyStats_AC.csv").Worksheets("DailyStats_AC").Cells(bottomRow + 1, 5).Value = telebundle
+Workbooks("DailyStats_AC.csv").Worksheets("DailyStats_AC").Cells(bottomRow + 1, 6).Value = DualMonitors
+Workbooks("DailyStats_AC.csv").Worksheets("DailyStats_AC").Cells(bottomRow + 1, 7).Value = MonKeyboardMouse
+Workbooks("DailyStats_AC.csv").Worksheets("DailyStats_AC").Cells(bottomRow + 1, 8).Value = MonDocks
+Workbooks("DailyStats_AC.csv").Worksheets("DailyStats_AC").Cells(bottomRow + 1, 9).Value = Docks
+Workbooks("DailyStats_AC.csv").Worksheets("DailyStats_AC").Cells(bottomRow + 1, 10).Value = DockKeyMouse
+Workbooks("DailyStats_AC.csv").Worksheets("DailyStats_AC").Cells(bottomRow + 1, 11).Value = chair
+Workbooks("DailyStats_AC.csv").Worksheets("DailyStats_AC").Cells(bottomRow + 1, 12).Value = KeyMouse
+Workbooks("DailyStats_AC.csv").Worksheets("DailyStats_AC").Cells(bottomRow + 1, 13).Value = other
+Workbooks("DailyStats_AC.csv").Worksheets("DailyStats_AC").Cells(bottomRow + 1, 14).Value = totalAssets
+''''''''
+Application.ScreenUpdating = True
+End Sub

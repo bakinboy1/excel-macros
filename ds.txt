@@ -1,0 +1,131 @@
+Sub DailyStats_DS()
+
+Dim loanLap As String
+Dim deskConvLap As String
+Dim execHomeSetup As String
+Dim movesComp As String
+Dim peopleConvVM As String
+Dim homePrinter As String
+Dim telebundle As String
+Dim lapCurrCap As String
+Dim lapOnOrder As String
+Dim LapComm As String
+Dim lapEstDate As String
+Dim teleCurrCap As String
+Dim teleOnOrder As String
+Dim teleComm As String
+Dim teleEstDate As String
+Dim vdiCurrCap As String
+Dim vdiOnOrder As String
+Dim vdiComm As String
+Dim vdiEstDate As String
+Dim dataRow As Integer
+
+dataRow = Cells.Find(What:="Desktop Services", After:=ActiveCell, LookIn _
+        :=xlFormulas, LookAt:=xlPart, SearchOrder:=xlByRows, SearchDirection:= _
+        xlNext, MatchCase:=False, SearchFormat:=False).Row
+        
+dataRow = dataRow + 2
+        
+bottomRow = Workbooks("DailyStats_DS.csv").Worksheets("DailyStats_DS").Cells(Rows.Count, 1).End(xlUp).Row
+Application.ScreenUpdating = False
+''''''''
+
+   Dim myChar As String
+   Dim x As Integer
+   Dim i As String
+
+   i = ""
+   For x = 1 To Len(myCell)
+     myChar = Mid(myCell, x, 1)
+         If Asc(myChar) >= 48 And _
+            Asc(myChar) <= 57 Then
+            i = i & myChar
+         End If
+   Next
+   RemoveAllNonNums = Val(i)
+''''''''datarow-37
+loanLap = Cells(dataRow, 2).Value
+deskConvLap = Cells(dataRow + 1, 2).Value
+execHomeSetup = Cells(dataRow + 2, 2).Value
+movesComp = Cells(dataRow + 3, 2).Value
+peopleConvVM = Cells(dataRow + 4, 2).Value
+homePrinter = Cells(dataRow + 5, 2).Value
+''
+telebundle = Cells(dataRow + 6, 2).Value
+   i = ""
+   For x = 1 To Len(telebundle)
+     myChar = Mid(telebundle, x, 1)
+         If Asc(myChar) >= 48 And _
+            Asc(myChar) <= 57 Then
+            i = i & myChar
+         End If
+   Next
+   RemoveAllNonNums = Val(i)
+telebundle = RemoveAllNonNums
+''
+lapCurrCap = Cells(dataRow + 9, 2).Value
+lapOnOrder = Cells(dataRow + 9, 3).Value
+LapComm = Cells(dataRow + 9, 4).Value
+lapEstDate = Cells(dataRow + 9, 5).Value
+''
+teleCurrCap = Cells(dataRow + 10, 2).Value
+   i = ""
+   For x = 1 To Len(teleCurrCap)
+     myChar = Mid(teleCurrCap, x, 1)
+         If Asc(myChar) >= 48 And _
+            Asc(myChar) <= 57 Then
+            i = i & myChar
+         End If
+   Next
+   RemoveAllNonNums = Val(i)
+teleCurrCap = RemoveAllNonNums
+''
+teleOnOrder = Cells(dataRow + 10, 3).Value
+teleComm = Cells(dataRow + 10, 4).Value
+teleEstDate = Cells(dataRow + 10, 5).Value
+''
+vdiCurrCap = Cells(dataRow + 11, 2).Value
+   i = ""
+   For x = 1 To Len(vdiCurrCap)
+     myChar = Mid(vdiCurrCap, x, 1)
+         If Asc(myChar) >= 48 And _
+            Asc(myChar) <= 57 Then
+            i = i & myChar
+         End If
+   Next
+   RemoveAllNonNums = Val(i)
+vdiCurrCap = RemoveAllNonNums
+''
+vdiOnOrder = Cells(dataRow + 11, 3).Value
+vdiComm = Cells(dataRow + 11, 4).Value
+vdiEstDate = Cells(dataRow + 11, 5).Value
+
+''''''''
+Workbooks("DailyStats_DS.csv").Worksheets("DailyStats_DS").Cells(bottomRow + 1, 1).Value = Date
+Workbooks("DailyStats_DS.csv").Worksheets("DailyStats_DS").Cells(bottomRow + 1, 2).Value = loanLap
+Workbooks("DailyStats_DS.csv").Worksheets("DailyStats_DS").Cells(bottomRow + 1, 3).Value = deskConvLap
+Workbooks("DailyStats_DS.csv").Worksheets("DailyStats_DS").Cells(bottomRow + 1, 4).Value = execHomeSetup
+Workbooks("DailyStats_DS.csv").Worksheets("DailyStats_DS").Cells(bottomRow + 1, 5).Value = movesComp
+Workbooks("DailyStats_DS.csv").Worksheets("DailyStats_DS").Cells(bottomRow + 1, 6).Value = peopleConvVM
+Workbooks("DailyStats_DS.csv").Worksheets("DailyStats_DS").Cells(bottomRow + 1, 7).Value = homePrinter
+Workbooks("DailyStats_DS.csv").Worksheets("DailyStats_DS").Cells(bottomRow + 1, 8).Value = telebundle
+Workbooks("DailyStats_DS.csv").Worksheets("DailyStats_DS").Cells(bottomRow + 1, 9).Value = lapCurrCap
+Workbooks("DailyStats_DS.csv").Worksheets("DailyStats_DS").Cells(bottomRow + 1, 10).Value = lapOnOrder
+Workbooks("DailyStats_DS.csv").Worksheets("DailyStats_DS").Cells(bottomRow + 1, 11).Value = LapComm
+Workbooks("DailyStats_DS.csv").Worksheets("DailyStats_DS").Cells(bottomRow + 1, 12).Value = lapEstDate
+Workbooks("DailyStats_DS.csv").Worksheets("DailyStats_DS").Cells(bottomRow + 1, 13).Value = teleCurrCap
+Workbooks("DailyStats_DS.csv").Worksheets("DailyStats_DS").Cells(bottomRow + 1, 14).Value = teleOnOrder
+Workbooks("DailyStats_DS.csv").Worksheets("DailyStats_DS").Cells(bottomRow + 1, 15).Value = teleComm
+Workbooks("DailyStats_DS.csv").Worksheets("DailyStats_DS").Cells(bottomRow + 1, 16).Value = teleEstDate
+Workbooks("DailyStats_DS.csv").Worksheets("DailyStats_DS").Cells(bottomRow + 1, 17).Value = vdiCurrCap
+Workbooks("DailyStats_DS.csv").Worksheets("DailyStats_DS").Cells(bottomRow + 1, 18).Value = vdiOnOrder
+Workbooks("DailyStats_DS.csv").Worksheets("DailyStats_DS").Cells(bottomRow + 1, 19).Value = vdiComm
+Workbooks("DailyStats_DS.csv").Worksheets("DailyStats_DS").Cells(bottomRow + 1, 20).Value = vdiEstDate
+Workbooks("DailyStats_DS.csv").Worksheets("DailyStats_DS").Cells(bottomRow + 1, 14).Value = vdiOnOrder
+Workbooks("DailyStats_DS.csv").Worksheets("DailyStats_DS").Cells(bottomRow + 1, 15).Value = vdiComm
+Workbooks("DailyStats_DS.csv").Worksheets("DailyStats_DS").Cells(bottomRow + 1, 16).Value = vdiEstDate
+''''''''
+Application.ScreenUpdating = True
+End Sub
+
